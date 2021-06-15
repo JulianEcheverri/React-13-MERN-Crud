@@ -1,0 +1,6 @@
+MERN Project
+Install react router dom
+	npm install react-router-dom
+Install uuid from local id management
+	npm i -D uuid
+	npm install uuid

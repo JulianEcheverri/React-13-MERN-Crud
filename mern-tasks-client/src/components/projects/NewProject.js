@@ -1,11 +1,11 @@
-import React, { Fragment, useState, useContext } from 'react';
-import ProjectContext from '../../context/projects/ProjectContext';
+import React, { Fragment, useState, useContext } from "react";
+import ProjectContext from "../../context/projects/ProjectContext";
 
 const NewProject = () => {
     //States
     // Project
     const [project, saveProject] = useState({
-        name: '',
+        name: "",
     });
 
     // Contexts
@@ -16,23 +16,32 @@ const NewProject = () => {
     // Project State
     const { name } = project;
     // Project Context
-    const { showForm, fnShowForm } = projectContext;
+    const { showForm, showErrorForm, fnShowForm, addProject, fnShowFormError } =
+        projectContext;
 
     // Functions
     const onChangeProjectForm = (e) => {
         saveProject({
             ...project,
-            [e.target.name]: [e.target.value],
+            [e.target.name]: e.target.value,
         });
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
         // Form validation
+        if (name.trim() === "") {
+            fnShowFormError();
+            return;
+        }
 
         // Add to state
+        addProject(project);
 
         // Clear the form
+        saveProject({
+            name: "",
+        });
     };
 
     const onClickNewProject = () => {
@@ -64,6 +73,10 @@ const NewProject = () => {
                         value="Add project"
                     />
                 </form>
+            ) : null}
+
+            {showErrorForm ? (
+                <p className="mensaje error">Please type a Project Name</p>
             ) : null}
         </Fragment>
     );
