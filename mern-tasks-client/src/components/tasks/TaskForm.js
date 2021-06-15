@@ -11,7 +11,7 @@ const TaskForm = () => {
     const { currentProject } = projectContext;
     if (!currentProject) return null;
 
-    const [currentProjectObj] = currentProject;
+    // const [currentProjectObj] = currentProject;
 
     return (
         <div className="formulario">

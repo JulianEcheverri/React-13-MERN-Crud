@@ -10,13 +10,13 @@ const ProjectList = () => {
     // Contexts
     const { projects, getProjects } = projectContext;
 
-     // Getting the projects when this component in loaded
-     useEffect(() => {
+    // Getting the projects when this component in loaded
+    useEffect(() => {
         getProjects();
     }, []);
 
-    
-    if (projects.length === 0) return null;
+
+    if (projects.length === 0) return <p>There is no Projects</p>;
 
     return (
         <ul className="listado-proyectos">
