@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ProjectContext from "../../context/projects/ProjectContext";
 
 const TaskForm = () => {
-    return ( 
+    // Contexts
+    // Project form
+    const projectContext = useContext(ProjectContext);
+
+    // Variables
+    // Project Context
+    const { currentProject } = projectContext;
+    if (!currentProject) return null;
+
+    const [currentProjectObj] = currentProject;
+
+    return (
         <div className="formulario">
             <form>
                 <div className="contenedor-input">
-                    <input 
+                    <input
                         type="text"
                         className="input-text"
                         placeholder="Task name"
@@ -13,7 +25,7 @@ const TaskForm = () => {
                     />
                 </div>
                 <div className="contenedor-input">
-                    <input 
+                    <input
                         type="submit"
                         className="btn btn-block btn-primario btn-submit"
                         value="Add task"
@@ -21,7 +33,7 @@ const TaskForm = () => {
                 </div>
             </form>
         </div>
-     );
+    );
 }
- 
+
 export default TaskForm;

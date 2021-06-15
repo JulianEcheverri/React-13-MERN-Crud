@@ -1,7 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Task from "./Task";
+import ProjectContext from "../../context/projects/ProjectContext";
 
 const TaskList = () => {
+    // Contexts
+    // Project form
+    const projectContext = useContext(ProjectContext);
+    
+    // Variables
+    // Project Context
+    const { currentProject } = projectContext;
+    if (!currentProject) 
+        return <h2>Select a Project</h2>;
+
+    const [currentProjectObj] = currentProject;
     const tasks = [
         { name: 'Elegir plataforma', completed: true },
         { name: 'Elegir colores', completed: false },
@@ -11,7 +23,7 @@ const TaskList = () => {
 
     return (
         <Fragment>
-            <h2>Project: Tienda virtual</h2>
+            <h2>Project: {currentProjectObj.name}</h2>
             <ul className="listado-tareas">
                 {tasks.length === 0 ? (
                     <li>There is no tasks</li>

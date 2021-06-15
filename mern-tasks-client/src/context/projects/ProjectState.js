@@ -6,7 +6,8 @@ import {
     FORM_PROJECT,
     GET_PROJECTS,
     ADD_PROJECT,
-    FORM_ERROR
+    FORM_ERROR,
+    CURRENT_PROJECT
 } from '../../types'
 
 const ProjectState = props => {
@@ -20,7 +21,8 @@ const ProjectState = props => {
     const initialState = {
         showForm: false,
         showErrorForm: false,
-        projects: []
+        projects: [],
+        currentProject: null
     };
 
     // Dispatch for executing the actions
@@ -58,16 +60,26 @@ const ProjectState = props => {
         });
     };
 
+    // For showing the selected project in the main
+    const setCurrentProject = (id) => {
+        dispatch({
+            type: CURRENT_PROJECT,
+            payload: id
+        });
+    }
+
     return (
         <ProjectContext.Provider
             value={{
                 showForm: state.showForm,
                 showErrorForm: state.showErrorForm,
                 projects: state.projects,
+                currentProject: state.currentProject,
                 fnShowForm,
                 getProjects,
                 addProject,
-                fnShowFormError
+                fnShowFormError,
+                setCurrentProject
             }}>
             {props.children}
         </ProjectContext.Provider>
