@@ -1,11 +1,13 @@
 import React, { Fragment, useContext } from "react";
 import Task from "./Task";
 import ProjectContext from "../../context/projects/ProjectContext";
+import TaskContext from "../../context/tasks/TaskContext";
 
 const TaskList = () => {
     // Contexts
-    // Project form
     const projectContext = useContext(ProjectContext);
+     // Tasks
+     const taskContext = useContext(TaskContext);
 
     // Variables
     // Project Context
@@ -14,12 +16,8 @@ const TaskList = () => {
         return <h2>Select a Project</h2>;
 
     const [currentProjectObj] = currentProject;
-    const tasks = [
-        { name: 'Elegir plataforma', completed: true },
-        { name: 'Elegir colores', completed: false },
-        { name: 'Elegir plataformas de pago', completed: false },
-        { name: 'Elegir hosting', completed: true },
-    ];
+    // Tasks Context
+    const { taskFromProject } = taskContext;
 
     // Functions
     // Deletes a project
@@ -31,10 +29,10 @@ const TaskList = () => {
         <Fragment>
             <h2>Project: {currentProjectObj.name}</h2>
             <ul className="listado-tareas">
-                {tasks.length === 0 ? (
+                {taskFromProject.length === 0 ? (
                     <li>There is no tasks</li>
                 ) : (
-                    tasks.map((task) => <Task task={task} />)
+                    taskFromProject.map((task) => <Task task={task} />)
                 )}
             </ul>
             <button
