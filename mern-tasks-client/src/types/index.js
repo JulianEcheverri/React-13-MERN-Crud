@@ -10,3 +10,4 @@ export const CURRENT_PROJECT = 'CURRENT_PROJECT';
 export const DELETE_PROJECT = 'DELETE_PROJECT';
 
 // For tasks
+export const TASK_PROJECT = "TASK_PROJECT";
