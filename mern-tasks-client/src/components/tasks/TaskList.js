@@ -2,6 +2,8 @@ import React, { Fragment, useContext } from "react";
 import Task from "./Task";
 import ProjectContext from "../../context/projects/ProjectContext";
 import TaskContext from "../../context/tasks/TaskContext";
+// React transition group
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const TaskList = () => {
     // Contexts
@@ -12,8 +14,7 @@ const TaskList = () => {
     // Variables
     // Project Context
     const { currentProject, deleteProject } = projectContext;
-    if (!currentProject)
-        return <h2>Select a Project</h2>;
+    if (!currentProject) return <h2>Select a Project</h2>;
 
     const [currentProjectObj] = currentProject;
     // Tasks Context
@@ -23,7 +24,7 @@ const TaskList = () => {
     // Deletes a project
     const onDeleteProject = () => {
         deleteProject(currentProjectObj.id);
-    }
+    };
 
     return (
         <Fragment>
@@ -32,7 +33,17 @@ const TaskList = () => {
                 {taskFromProject.length === 0 ? (
                     <li>There is no tasks</li>
                 ) : (
-                    taskFromProject.map((task) => <Task key={task.id} task={task} />)
+                    <TransitionGroup>
+                        {taskFromProject.map((task) => (
+                            <CSSTransition
+                                key={task.id}
+                                timeout={400}
+                                classNames="tarea"
+                            >
+                                <Task task={task} />
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
                 )}
             </ul>
             <button

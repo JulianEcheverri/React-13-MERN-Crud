@@ -1,27 +1,39 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ProjectContext from '../../context/projects/ProjectContext';
 import TaskContext from '../../context/tasks/TaskContext';
 
 const TaskForm = () => {
     // Contexts
     const projectContext = useContext(ProjectContext);
-    const taskContext = useContext(TaskContext);
+    // Project context variables
+    const { currentProject } = projectContext;
 
-    // States
-    // Form state
+    const taskContext = useContext(TaskContext);
+    // Task context variables
+    const { taskValidate, showErrorTaskForm, getTasks, addTask, currentTask, updateTask, clearCurrentTask } = taskContext;
+
     const [task, setTask] = useState({
         name: "",
     });
 
-    // Variables
-    // Project Context
-    const { currentProject } = projectContext;
+    // State variables
+    const { name } = task;
+
+    // Use effect for checking changes in current tastk
+    useEffect(() => {
+        if (currentTask !== null) {
+            setTask(currentTask);
+        }
+        else {
+            setTask({
+                name: ''
+            });
+        }
+    }, [currentTask]);
+
     if (!currentProject) return null;
 
     const [currentProjectObj] = currentProject;
-    const { name } = task;
-    const { addTask } = taskContext;
-    const { taskValidate, showErrorTaskForm, getTasks } = taskContext;
 
     const onChangeTask = (e) => {
         setTask({
@@ -41,11 +53,17 @@ const TaskForm = () => {
             return;
         }
 
-        // Add task to TaskState
-        // Setting projectId to task
-        task.projectId = currentProjectObj.id;
-        task.completed = false;
-        addTask(task);
+        // Check for editing or adding
+        if (currentTask === null) {
+            // Add task to TaskState
+            // Setting projectId to task
+            task.projectId = currentProjectObj.id;
+            task.completed = false;
+            addTask(task);
+        } else {
+            updateTask(task);
+            clearCurrentTask();
+        }
 
         //Clear form
         setTask({
@@ -73,7 +91,7 @@ const TaskForm = () => {
                     <input
                         type="submit"
                         className="btn btn-block btn-primario btn-submit"
-                        value="Add task"
+                        value={currentTask ? "Edit Task" : "Add Task"}
                     />
                 </div>
             </form>

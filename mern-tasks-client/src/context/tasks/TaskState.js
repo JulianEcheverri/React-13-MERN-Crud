@@ -1,11 +1,16 @@
 import React, { useReducer } from 'react';
 import TaskContext from './TaskContext';
 import TaskReducer from './TaskReducer';
+import { v4 as uuidv4 } from 'uuid';
 import {
     TASK_PROJECT,
     ADD_TASK,
     TASK_FORM_ERROR,
-    DELETE_TASK
+    DELETE_TASK,
+    COMPLETED_TASK,
+    CURRENT_TASK,
+    UPDATE_TASK,
+    CLEAR_TASK
 } from '../../types'
 
 const TaskState = props => {
@@ -27,6 +32,7 @@ const TaskState = props => {
         tasks: tasks,
         taskFromProject: null,
         showErrorTaskForm: false,
+        currentTask: null
     };
 
     // Retrieve state and dispatch
@@ -42,6 +48,7 @@ const TaskState = props => {
 
     // Add task to the selected project
     const addTask = (task) => {
+        task.id = uuidv4();
         dispatch({
             type: ADD_TASK,
             payload: task
@@ -62,16 +69,48 @@ const TaskState = props => {
         });
     };
 
+    const setCompletedTask = (task) => {
+        dispatch({
+            type: COMPLETED_TASK,
+            payload: task
+        });
+    };
+
+    const setCurrentTask = (task) => {
+        dispatch({
+            type: CURRENT_TASK,
+            payload: task
+        });
+    };
+
+    const updateTask = (task) => {
+        dispatch({
+            type: UPDATE_TASK,
+            payload: task
+        });
+    };
+
+    const clearCurrentTask = () => {
+        dispatch({
+            type: CLEAR_TASK
+        });
+    };
+
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 taskFromProject: state.taskFromProject,
                 showErrorTaskForm: state.showErrorTaskForm,
+                currentTask: state.currentTask,
                 getTasks,
                 addTask,
                 taskValidate,
-                deleteTask
+                deleteTask,
+                setCompletedTask,
+                setCurrentTask,
+                updateTask,
+                clearCurrentTask
             }}>
             {props.children}
         </TaskContext.Provider>

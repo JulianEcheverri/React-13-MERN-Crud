@@ -3,3 +3,5 @@ Install react router dom
 Install uuid from local id management
 	npm i -D uuid
 	npm install uuid
+Install react transitions group
+npm install react-transition-group
