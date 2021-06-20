@@ -6,8 +6,8 @@ import TaskContext from "../../context/tasks/TaskContext";
 const TaskList = () => {
     // Contexts
     const projectContext = useContext(ProjectContext);
-     // Tasks
-     const taskContext = useContext(TaskContext);
+    // Tasks
+    const taskContext = useContext(TaskContext);
 
     // Variables
     // Project Context
@@ -32,7 +32,7 @@ const TaskList = () => {
                 {taskFromProject.length === 0 ? (
                     <li>There is no tasks</li>
                 ) : (
-                    taskFromProject.map((task) => <Task task={task} />)
+                    taskFromProject.map((task) => <Task key={task.id} task={task} />)
                 )}
             </ul>
             <button
