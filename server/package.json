@@ -1,0 +1,33 @@
+{
+  "name": "merntaskserver",
+  "version": "1.0.0",
+  "description": "MERN API for MERN-Task react project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulianEcheverri/React-13-MERN-Crud.git"
+  },
+  "keywords": [
+    "MERN",
+    "react",
+    "nodejs"
+  ],
+  "author": "Julian Echeverri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulianEcheverri/React-13-MERN-Crud/issues"
+  },
+  "homepage": "https://github.com/JulianEcheverri/React-13-MERN-Crud#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.14"
+  }
+}
