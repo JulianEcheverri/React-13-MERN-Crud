@@ -8,18 +8,21 @@ import Projects from './components/projects/Projects';
 // Contexts
 import ProjectState from './context/projects/ProjectState'
 import TaskState from './context/tasks/TaskState'
+import WarningState from './context/warnings/WarningState'
 
 function App() {
   return (
     <ProjectState>
       <TaskState>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Login}></Route>
-            <Route exact path="/new-account" component={NewAccount}></Route>
-            <Route exact path="/projects" component={Projects}></Route>
-          </Switch>
-        </Router>
+        <WarningState>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Login}></Route>
+              <Route exact path="/new-account" component={NewAccount}></Route>
+              <Route exact path="/projects" component={Projects}></Route>
+            </Switch>
+          </Router>
+        </WarningState>
       </TaskState>
     </ProjectState>
   );

@@ -1,5 +1,4 @@
 // Types
-// Actions
 
 // For project
 export const FORM_PROJECT = 'FORM_PROJECT';
@@ -19,4 +18,6 @@ export const CURRENT_TASK = 'CURRENT_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const CLEAR_TASK = 'CLEAR_TASK';
 
-
+// For warnings
+export const SHOW_WARNING = 'SHOW_WARNING';
+export const HIDE_WARNING = 'HIDE_WARNING';

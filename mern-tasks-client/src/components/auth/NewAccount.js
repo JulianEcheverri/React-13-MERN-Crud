@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import WarningContext from "../../context/warnings/WarningContext";
 
 const NewAccount = () => {
+    // Contexts
+    const warningContext = useContext(WarningContext);
+    const { warning, showWarning } = warningContext;
+
     // States
     // New Account
     const [user, saveUser] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirm: ''
+        name: "",
+        email: "",
+        password: "",
+        confirm: "",
     });
 
     // Variables
@@ -18,7 +23,7 @@ const NewAccount = () => {
     const onChangeNewAccountForm = (e) => {
         saveUser({
             ...user,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
         });
     };
 
@@ -26,12 +31,33 @@ const NewAccount = () => {
         e.preventDefault();
 
         // Form validation
+        if (
+            name.trim() === "" ||
+            email.trim() === "" ||
+            password.trim() === "" ||
+            confirm.trim() === ""
+        ) {
+            showWarning("All fields are required", "alerta-error");
+            return;
+        }
 
+        if (password.length < 6 ) {
+            showWarning("Password length should be at least 6 characters", "alerta-error");
+            return;
+        }
+
+        if (password !== confirm) {
+            showWarning("Confirm Password does not match", "alerta-error");
+            return;
+        }
 
     };
 
     return (
         <div className="form-usuario">
+            {warning ? (
+                <div className={`alerta ${warning.category}`}> {warning.msg} </div>
+            ) : null}
             <div className="contenedor-form sombra-dark">
                 <h1>Create an Account</h1>
                 <form onSubmit={onSubmit}>
@@ -87,12 +113,12 @@ const NewAccount = () => {
                         />
                     </div>
                 </form>
-                <Link to={'/'} className="enlace-cuenta">
+                <Link to={"/"} className="enlace-cuenta">
                     Log In
                 </Link>
             </div>
         </div>
     );
-}
+};
 
 export default NewAccount;
