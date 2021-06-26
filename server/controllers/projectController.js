@@ -21,7 +21,7 @@ exports.createProject = async (req, res) => {
         // Save project in db
         await project.save();
 
-        res.json({ msg: "Project created" });
+        res.json({ project });
 
     } catch (error) {
         console.log(error);
@@ -31,7 +31,6 @@ exports.createProject = async (req, res) => {
 
 exports.getProjects = async (req, res) => {
     try {
-        console.log(req.user);
         const projects = await Project.find({ userCreator: req.user.id }).sort({ logDate: -1 });
         res.json({ projects });
 
