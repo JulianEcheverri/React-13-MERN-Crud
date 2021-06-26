@@ -13,7 +13,8 @@ app.use(express.json({ extended: true }));
 // Assign the port
 const PORT = process.env.PORT || 4000;
 
-app.use('/api/users', require('./routes/users'));
+app.use('/api/user', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
 
 // Run the server
 app.listen(PORT, () => {
