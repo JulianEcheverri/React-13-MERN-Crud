@@ -14,3 +14,12 @@ npm Install express mongoose dotenv
 For run server
 npm run "command defined in package.json"
 npm run dev
+
+For password hash
+npm install bcryptjs
+
+Express validator
+npm install express-validator
+
+For JWT
+npm install jsonwebtoken
