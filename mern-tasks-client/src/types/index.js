@@ -29,3 +29,6 @@ export const GET_USER = 'GET_USER';
 export const LOG_IN_SUCCESSFUL = 'LOG_IN_SUCCESSFUL';
 export const ERROR_LOG_IN = 'ERROR_LOG_IN';
 export const SIGN_OFF = 'SIGN';
+
+// Error
+export const PROJECT_ERROR_MSG = 'PROJECT_ERROR_MSG';

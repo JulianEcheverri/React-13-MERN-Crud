@@ -4,7 +4,8 @@ import {
     ADD_PROJECT,
     FORM_ERROR,
     CURRENT_PROJECT,
-    DELETE_PROJECT
+    DELETE_PROJECT,
+    PROJECT_ERROR_MSG
 } from "../../types";
 
 export default (state, action) => {
@@ -34,14 +35,19 @@ export default (state, action) => {
         case CURRENT_PROJECT:
             return {
                 ...state,
-                currentProject: state.projects.filter(x => x.id === action.payload)
+                currentProject: state.projects.filter(x => x._id === action.payload)
             };
         case DELETE_PROJECT:
             return {
                 ...state,
-                projects: state.projects.filter(x => x.id !== action.payload),
+                projects: state.projects.filter(x => x._id !== action.payload),
                 currentProject: null
             };
+        case PROJECT_ERROR_MSG:
+            return {
+                ...state,
+                msg: action.payload
+            }
         default:
             return state;
     }

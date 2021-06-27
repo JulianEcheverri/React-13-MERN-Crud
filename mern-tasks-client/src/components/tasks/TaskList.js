@@ -23,7 +23,7 @@ const TaskList = () => {
     // Functions
     // Deletes a project
     const onDeleteProject = () => {
-        deleteProject(currentProjectObj.id);
+        deleteProject(currentProjectObj._id);
     };
 
     return (
