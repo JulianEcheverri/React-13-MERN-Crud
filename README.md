@@ -1,4 +1,12 @@
-### CRUD React app using Express, Node, and MongoDB.
+### CRUD React app using Express, Node, and MongoDB
+
+#### Site 
+**https://react-13-mern-tasks-app.netlify.app/**
+###### Deployed on
+- **Heroku**
+- **Netlify**
+
+---
 
 #### npm info
 ###### Install react router dom
