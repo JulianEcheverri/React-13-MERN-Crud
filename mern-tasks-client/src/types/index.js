@@ -21,3 +21,11 @@ export const CLEAR_TASK = 'CLEAR_TASK';
 // For warnings
 export const SHOW_WARNING = 'SHOW_WARNING';
 export const HIDE_WARNING = 'HIDE_WARNING';
+
+// For auth
+export const SING_IN_SUCCESSFUL = 'SING_IN_SUCCESSFUL';
+export const ERROR_SING_IN = 'ERROR_SING_IN';
+export const GET_USER = 'GET_USER';
+export const LOG_IN_SUCCESSFUL = 'LOG_IN_SUCCESSFUL';
+export const ERROR_LOG_IN = 'ERROR_LOG_IN';
+export const SING_OFF = 'SING_OFF';

@@ -1,11 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import WarningContext from "../../context/warnings/WarningContext";
+import AuthContext from "../../context/auth/AuthContext";
 
-const NewAccount = () => {
+const NewAccount = (props) => {
     // Contexts
     const warningContext = useContext(WarningContext);
     const { warning, showWarning } = warningContext;
+    const authContext = useContext(AuthContext);
+    const { signInUser, authenticated, msg } = authContext;
+
+    // Validate user repeated
+    useEffect(() => {
+        if (authenticated) {
+            props.history.push('/projects');
+        }
+        if (msg) {
+            showWarning(msg.msg, msg.category);
+        }
+
+    }, [msg, authenticated, props.history])
 
     // States
     // New Account
@@ -41,7 +55,7 @@ const NewAccount = () => {
             return;
         }
 
-        if (password.length < 6 ) {
+        if (password.length < 6) {
             showWarning("Password length should be at least 6 characters", "alerta-error");
             return;
         }
@@ -51,6 +65,11 @@ const NewAccount = () => {
             return;
         }
 
+        signInUser({
+            name,
+            email,
+            password
+        });
     };
 
     return (

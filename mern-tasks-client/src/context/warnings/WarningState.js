@@ -14,7 +14,7 @@ const WarningState = props => {
     // Retrieve state and dispatch
     const [state, dispatch] = useReducer(WarningReducer, initialState);
 
-    // Funtions
+    // Fucntions
     const showWarning = (msg, category) => {
         dispatch({
             type: SHOW_WARNING,
