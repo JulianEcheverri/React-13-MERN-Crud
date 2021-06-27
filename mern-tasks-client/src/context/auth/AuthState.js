@@ -4,20 +4,22 @@ import AuthReducer from './AuthReducer';
 import axiosClient from '../../config/axios';
 import tokenAuth from '../../config/tokenAuth';
 import {
-    SING_IN_SUCCESSFUL,
-    ERROR_SING_IN,
+    SIGN_IN_SUCCESSFUL,
+    ERROR_SIGN_IN,
     GET_USER,
     LOG_IN_SUCCESSFUL,
     ERROR_LOG_IN,
-    SING_OFF
+    SIGN_OFF
 } from '../../types'
 
 const AuthState = props => {
+
     const initialState = {
         token: localStorage.getItem('token'),
         authenticated: null,
         user: null,
-        msg: null
+        msg: null,
+        loading: true
     };
 
     // Retrieve state and dispatch
@@ -28,7 +30,7 @@ const AuthState = props => {
         try {
             const response = await axiosClient.post('/api/users', userData);
             dispatch({
-                type: SING_IN_SUCCESSFUL,
+                type: SIGN_IN_SUCCESSFUL,
                 payload: response.data
             });
             getUserAuthenticated();
@@ -39,7 +41,7 @@ const AuthState = props => {
             };
 
             dispatch({
-                type: ERROR_SING_IN,
+                type: ERROR_SIGN_IN,
                 payload: warning
             });
         }
@@ -58,10 +60,37 @@ const AuthState = props => {
             });
         } catch (error) {
             dispatch({
-                type: ERROR_LOG_IN,
+                type: ERROR_SIGN_IN,
                 //payload: warning
             });
         }
+    }
+
+    const logInUser = async (datos) => {
+        try {
+            const response = await axiosClient.post('/api/auth', datos);
+            dispatch({
+                type: LOG_IN_SUCCESSFUL,
+                payload: response.data
+            });
+            getUserAuthenticated();
+        } catch (error) {
+            const warning = {
+                msg: error.response.data.msg,
+                category: 'alerta-error'
+            };
+
+            dispatch({
+                type: ERROR_LOG_IN,
+                payload: warning
+            });
+        }
+    }
+
+    const signOffUser = async () => {
+        dispatch({
+            type: SIGN_OFF,
+        });
     }
 
     return (
@@ -71,7 +100,11 @@ const AuthState = props => {
                 authenticated: state.authenticated,
                 user: state.user,
                 msg: state.msg,
-                signInUser
+                loading: state.loading,
+                signInUser,
+                logInUser,
+                getUserAuthenticated,
+                signOffUser
             }}>
             {props.children}
         </AuthContext.Provider>

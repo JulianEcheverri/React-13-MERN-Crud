@@ -19,7 +19,7 @@ const NewAccount = (props) => {
             showWarning(msg.msg, msg.category);
         }
 
-    }, [msg, authenticated, props.history])
+    }, [msg, authenticated, props.history]);
 
     // States
     // New Account

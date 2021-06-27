@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import AuthContext from '../../context/auth/AuthContext';
 
 const AccountBar = () => {
-    return ( 
+    const authContext = useContext(AuthContext);
+    const { getUserAuthenticated, user, signOffUser } = authContext;
+
+    useEffect(() => {
+        getUserAuthenticated();
+    }, []);
+
+    return (
         <header className="app-header">
-            <p className="nombre-usuario">Hello <span>Julian</span></p>
+            {
+                user ? <p className="nombre-usuario">Hello <span>{user.name}</span></p> : null
+            }
             <nav className="nav-principal">
-            <a href="!#">Log Out</a>
+                <button
+                    className="btn btn-blank cerrar-sesion"
+                    onClick={() => signOffUser()}
+                >
+                    Log Out
+                </button>
             </nav>
         </header>
-     );
+    );
 }
- 
+
 export default AccountBar;

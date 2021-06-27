@@ -11,20 +11,21 @@
 ###### Install react transitions group
 **npm install react-transition-group**
 
+---
 
-##### For Node API
+###### For Node API
 **npm Install -D nodemon**
 **npm Install express mongoose dotenv**
 
-##### For run server
+###### For run server
 **npm run "command defined in package.json"**
 **npm run dev**
 
-##### For password hash
+###### For password hash
 **npm install bcryptjs**
 
-##### Express validator
+###### Express validator
 **npm install express-validator**
 
-##### For JWT
+###### For JWT
 **npm install jsonwebtoken**

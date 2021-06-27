@@ -24,11 +24,11 @@ const Project = ({ project }) => {
 
     return (
         <li>
-            <button 
-                type="button" 
+            <button
+                type="button"
                 className="btn btn-blank"
                 onClick={() => onSelectCurrentProject(project.id)}
-                >
+            >
                 {project.name}
             </button>
         </li>

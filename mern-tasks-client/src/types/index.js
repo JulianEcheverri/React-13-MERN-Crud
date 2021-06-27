@@ -23,9 +23,9 @@ export const SHOW_WARNING = 'SHOW_WARNING';
 export const HIDE_WARNING = 'HIDE_WARNING';
 
 // For auth
-export const SING_IN_SUCCESSFUL = 'SING_IN_SUCCESSFUL';
-export const ERROR_SING_IN = 'ERROR_SING_IN';
+export const SIGN_IN_SUCCESSFUL = 'SIGN_IN_SUCCESSFUL';
+export const ERROR_SIGN_IN = 'ERROR_SIGN_IN';
 export const GET_USER = 'GET_USER';
 export const LOG_IN_SUCCESSFUL = 'LOG_IN_SUCCESSFUL';
 export const ERROR_LOG_IN = 'ERROR_LOG_IN';
-export const SING_OFF = 'SING_OFF';
+export const SIGN_OFF = 'SIGN';
