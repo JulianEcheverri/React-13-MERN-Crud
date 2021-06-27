@@ -57,8 +57,7 @@ const TaskForm = () => {
         if (currentTask === null) {
             // Add task to TaskState
             // Setting projectId to task
-            task.projectId = currentProjectObj.id;
-            task.completed = false;
+            task.projectId = currentProjectObj._id;
             addTask(task);
         } else {
             updateTask(task);
@@ -71,7 +70,7 @@ const TaskForm = () => {
         });
 
         // Retrieve the task after adding a new task
-        getTasks(currentProjectObj.id);
+        getTasks(currentProjectObj._id);
     };
 
     return (

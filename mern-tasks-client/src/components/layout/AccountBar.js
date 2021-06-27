@@ -7,6 +7,7 @@ const AccountBar = () => {
 
     useEffect(() => {
         getUserAuthenticated();
+        // eslint-disable-next-line
     }, []);
 
     return (

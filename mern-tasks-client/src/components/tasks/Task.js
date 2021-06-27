@@ -14,18 +14,18 @@ const Task = ({ task }) => {
     if (!currentProject) return null;
 
     const [currentProjectObj] = currentProject;
-    const { deleteTask, getTasks, setCompletedTask, setCurrentTask } = taskContext;
+    const { deleteTask, getTasks, updateTask, setCurrentTask } = taskContext;
 
     // Functions
     // Delete task
     const onDeleteTask = (id) => {
-        deleteTask(id);
-        getTasks(currentProjectObj.id);
+        deleteTask(id, currentProjectObj._id);
+        getTasks(currentProjectObj._id);
     };
 
     const onCompletedTask = (task) => {
         task.completed = task.completed ? false : true;
-        setCompletedTask(task);
+        updateTask(task);
     };
 
     const onSelectCurrentTask = (task) => {
@@ -63,7 +63,7 @@ const Task = ({ task }) => {
                     Edit
                 </button>
                 <button
-                    onClick={() => onDeleteTask(task.id)}
+                    onClick={() => onDeleteTask(task._id)}
                     className="btn btn-secundario"
                     type="button"
                 >

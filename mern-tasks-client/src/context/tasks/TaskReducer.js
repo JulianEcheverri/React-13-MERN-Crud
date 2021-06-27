@@ -3,25 +3,22 @@ import {
     ADD_TASK,
     TASK_FORM_ERROR,
     DELETE_TASK,
-    COMPLETED_TASK,
     CURRENT_TASK,
     UPDATE_TASK,
     CLEAR_TASK
 } from "../../types";
 
-export default (state, action) => {
+const TaskReducer = (state, action) => {
     switch (action.type) {
         case TASK_PROJECT:
             return {
                 ...state,
-                taskFromProject: state.tasks.filter(
-                    (x) => x.projectId === action.payload
-                ),
+                tasksFromProject: action.payload
             };
         case ADD_TASK:
             return {
                 ...state,
-                tasks: [action.payload, ...state.tasks],
+                tasksFromProject: [action.payload, ...state.tasksFromProject],
                 showErrorTaskForm: false,
             };
         case TASK_FORM_ERROR:
@@ -32,14 +29,13 @@ export default (state, action) => {
         case DELETE_TASK:
             return {
                 ...state,
-                tasks: state.tasks.filter((x) => x.id !== action.payload),
+                tasksFromProject: state.tasksFromProject.filter((x) => x._id !== action.payload),
             };
-        case COMPLETED_TASK:
         case UPDATE_TASK:
             return {
                 ...state,
-                tasks: state.tasks.map((task) =>
-                    task.id === action.payload.id ? action.payload : task
+                tasksFromProject: state.tasksFromProject.map((task) =>
+                    task._id === action.payload._id ? action.payload : task
                 ),
             };
         case CURRENT_TASK:
@@ -56,3 +52,5 @@ export default (state, action) => {
             return state;
     }
 };
+
+export default TaskReducer;

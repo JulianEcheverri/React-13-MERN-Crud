@@ -7,7 +7,7 @@ import {
     SIGN_OFF,
 } from "../../types";
 
-export default (state, action) => {
+const AuthReducer = (state, action) => {
     switch (action.type) {
         case SIGN_IN_SUCCESSFUL:
         case LOG_IN_SUCCESSFUL:
@@ -41,3 +41,5 @@ export default (state, action) => {
             return state;
     }
 };
+
+export default AuthReducer;

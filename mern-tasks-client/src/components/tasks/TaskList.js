@@ -18,7 +18,7 @@ const TaskList = () => {
 
     const [currentProjectObj] = currentProject;
     // Tasks Context
-    const { taskFromProject } = taskContext;
+    const { tasksFromProject } = taskContext;
 
     // Functions
     // Deletes a project
@@ -30,13 +30,14 @@ const TaskList = () => {
         <Fragment>
             <h2>Project: {currentProjectObj.name}</h2>
             <ul className="listado-tareas">
-                {taskFromProject.length === 0 ? (
+                {tasksFromProject.length === 0 ? (
                     <li>There is no tasks</li>
                 ) : (
                     <TransitionGroup>
-                        {taskFromProject.map((task) => (
+                        {tasksFromProject.map((task) => (
+                            // console.log(task)
                             <CSSTransition
-                                key={task.id}
+                                key={task._id}
                                 timeout={400}
                                 classNames="tarea"
                             >

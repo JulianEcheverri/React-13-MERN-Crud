@@ -8,7 +8,7 @@ import {
     PROJECT_ERROR_MSG
 } from "../../types";
 
-export default (state, action) => {
+const ProjectReducer = (state, action) => {
     switch (action.type) {
         case FORM_PROJECT:
             return {
@@ -52,3 +52,5 @@ export default (state, action) => {
             return state;
     }
 };
+
+export default ProjectReducer;

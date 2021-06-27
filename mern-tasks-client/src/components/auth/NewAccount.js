@@ -18,7 +18,7 @@ const NewAccount = (props) => {
         if (msg) {
             showWarning(msg.msg, msg.category);
         }
-
+        // eslint-disable-next-line
     }, [msg, authenticated, props.history]);
 
     // States

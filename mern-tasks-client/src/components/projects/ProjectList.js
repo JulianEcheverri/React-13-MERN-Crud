@@ -22,6 +22,7 @@ const ProjectList = () => {
             showWarning(msg.msg, msg.category);
         }
         getProjects();
+        // eslint-disable-next-line
     }, [msg]);
 
     if (projects.length === 0) return <p>There is no Projects</p>;

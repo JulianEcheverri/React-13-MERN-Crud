@@ -3,7 +3,7 @@ import {
     HIDE_WARNING
 } from '../../types'
 
-export default (state, action) => {
+const WarningReducer = (state, action) => {
     switch (action.type) {
         case SHOW_WARNING:
             return {
@@ -17,3 +17,5 @@ export default (state, action) => {
             return state;
     }
 };
+
+export default WarningReducer;

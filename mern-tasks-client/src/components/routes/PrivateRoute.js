@@ -9,6 +9,7 @@ const PrivateRoute = ({ component: Component, ...props }) => {
 
     useEffect(() => {
         getUserAuthenticated();
+        // eslint-disable-next-line
     }, []);
 
     return (
